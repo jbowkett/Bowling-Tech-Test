@@ -7,10 +7,10 @@ package info.bowkett.bowling;
  * Time: 8:31:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Frame {
+public class FrameTally {
   private final int ballOneScore, ballTwoScore;
 
-  public Frame(int ballOneScore, int ballTwoScore) {
+  public FrameTally(int ballOneScore, int ballTwoScore) {
     this.ballOneScore = ballOneScore;
     this.ballTwoScore = ballTwoScore;
   }

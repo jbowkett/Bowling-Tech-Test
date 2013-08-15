@@ -5,6 +5,6 @@ Feature:  Ensure bowling scores are calculated correctly
  | throw  |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 |
  | ball 1 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 |
  | ball 2 |  - |  - |  - |  - |  - |  - |  - |  - |  - |  - | -  |
- When the game is over
+ When the game is played
  Then the players score is 300
 
