@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 public class BowlingStepDefs {
   private FrameTally[] frameTallies;
   private Player player;
+  private static final int GHERKIN_STARTING_INDEX = 1;
 
   @Given("^a player with the following scores:$")
   public void a_player_with_the_following_scores(DataTable table) throws Throwable {
@@ -33,16 +34,31 @@ public class BowlingStepDefs {
     final List<DataTableRow> dataTableRows = table.getGherkinRows();
     final List<String> ballOne = dataTableRows.get(1).getCells();
     final List<String> ballTwo = dataTableRows.get(2).getCells();
+    final List<String> bonusBall = dataTableRows.get(3).getCells();
 
     frameTallies = new FrameTally[ballOne.size()];
-    for (int i = 1; i< ballOne.size() ; i++) {
-      final String ballOneTallyStr = ballOne.get(i);
-      final String ballTwoTallyStr = ballTwo.get(i);
+    for (int index = GHERKIN_STARTING_INDEX; index < ballOne.size() ; index++) {
+      final String ballOneTallyStr = ballOne.get(index);
+      final String ballTwoTallyStr = ballTwo.get(index);
 
-      final int ballOneTally = ballOneTallyStr.equals("-") ? 0 : Integer.parseInt(ballOneTallyStr);
-      final int ballTwoTally = ballTwoTallyStr.equals("-") ? 0 : Integer.parseInt(ballTwoTallyStr);
-      frameTallies[i] = new FrameTally(ballOneTally, ballTwoTally);
+      final int ballOneTally = getBallTally(ballOneTallyStr);
+      final int ballTwoTally = getBallTally(ballTwoTallyStr);
+      if(isLastFrame(ballOne, index)){
+        final int bonusBallTally = getBallTally(bonusBall.get(index));
+        frameTallies[index - 1] = FrameTally.bonusFrame(ballOneTally, ballTwoTally, bonusBallTally);
+      }
+      else{
+        frameTallies[index - 1] = FrameTally.ordinaryFrame(ballOneTally, ballTwoTally);
+      }
     }
+  }
+
+  private boolean isLastFrame(List<String> ballOne, int i) {
+    return i == ballOne.size() - 1;
+  }
+
+  private int getBallTally(String ballOneTallyStr) {
+    return ballOneTallyStr.equals("-") ? 0 : Integer.parseInt(ballOneTallyStr);
   }
 
 

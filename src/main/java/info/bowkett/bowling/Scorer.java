@@ -14,7 +14,7 @@ public class Scorer {
   public int getScore(TallyCard tallyCard) {
     int totalScore = 0;
     final List<FrameTally> frames = tallyCard.getFrames();
-    for(int i = 0; thereIsANextFrame(i, frames); i++){
+    for(int i = 0; i < frames.size(); i++){
       final FrameTally tally = frames.get(i);
       final int frameTotal = tally.getBallOneScore() + tally.getBallTwoScore();
 
@@ -53,7 +53,11 @@ public class Scorer {
   }
 
   private boolean thereIsANextFrame(int index, List<FrameTally> frames) {
-    return index < frames.size();
+    return index+1 < frames.size() && nextFrameNotNull(index, frames);
+  }
+
+  private boolean nextFrameNotNull(int index, List<FrameTally> frames) {
+    return nextFrame(index, frames) != null;
   }
 
   private FrameTally nextFrame(int index, List<FrameTally> frames) {
