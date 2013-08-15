@@ -1,4 +1,4 @@
-package info.bowkett.bowling;
+package info.bowkett.bowling.model;
 
 import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Scorer;
