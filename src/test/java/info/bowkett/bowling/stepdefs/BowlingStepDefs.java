@@ -1,7 +1,6 @@
 package info.bowkett.bowling.stepdefs;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -29,7 +28,7 @@ public class BowlingStepDefs {
 
   @Given("^a player with the following scores:$")
   public void a_player_with_the_following_scores(DataTable table) throws Throwable {
-    player = new Player("Player_"+System.currentTimeMillis(), new TallyCard(), new Scorer());
+    player = new Player("Player_" + System.currentTimeMillis(), new TallyCard(), new Scorer());
 
     final List<DataTableRow> dataTableRows = table.getGherkinRows();
     final List<String> ballOne = dataTableRows.get(1).getCells();
@@ -37,17 +36,17 @@ public class BowlingStepDefs {
     final List<String> bonusBall = dataTableRows.get(3).getCells();
 
     frameTallies = new FrameTally[ballOne.size()];
-    for (int index = GHERKIN_STARTING_INDEX; index < ballOne.size() ; index++) {
+    for (int index = GHERKIN_STARTING_INDEX; index < ballOne.size(); index++) {
       final String ballOneTallyStr = ballOne.get(index);
       final String ballTwoTallyStr = ballTwo.get(index);
 
       final int ballOneTally = getBallTally(ballOneTallyStr);
       final int ballTwoTally = getBallTally(ballTwoTallyStr);
-      if(isLastFrame(ballOne, index)){
+      if (isLastFrame(ballOne, index)) {
         final int bonusBallTally = getBallTally(bonusBall.get(index));
         frameTallies[index - 1] = FrameTally.bonusFrame(ballOneTally, ballTwoTally, bonusBallTally);
       }
-      else{
+      else {
         frameTallies[index - 1] = FrameTally.ordinaryFrame(ballOneTally, ballTwoTally);
       }
     }
@@ -69,8 +68,8 @@ public class BowlingStepDefs {
     }
   }
 
-  @Then("^the players score is (\\d+)$")
-  public void the_players_score_is(int score) throws Throwable {
+  @Then("^the player's score is (\\d+)$")
+  public void the_player_s_score_is(int score) throws Throwable {
     assertEquals(score, player.getScore());
   }
 }
