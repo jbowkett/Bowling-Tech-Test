@@ -5,7 +5,9 @@ package info.bowkett.bowling;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 8:31:35 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Represents the amount of pins knocked down in a frame
+ *
  */
 public class FrameTally {
   private final int ballOneScore, ballTwoScore;

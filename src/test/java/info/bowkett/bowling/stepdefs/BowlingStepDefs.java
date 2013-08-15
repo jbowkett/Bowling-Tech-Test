@@ -8,8 +8,12 @@ import cucumber.api.java.en.When;
 import gherkin.formatter.model.DataTableRow;
 import info.bowkett.bowling.FrameTally;
 import info.bowkett.bowling.Player;
+import info.bowkett.bowling.Scorer;
+import info.bowkett.bowling.TallyCard;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,7 +28,7 @@ public class BowlingStepDefs {
 
   @Given("^a player with the following scores:$")
   public void a_player_with_the_following_scores(DataTable table) throws Throwable {
-    player = new Player("Player_"+System.currentTimeMillis());
+    player = new Player("Player_"+System.currentTimeMillis(), new TallyCard(), new Scorer());
 
     final List<DataTableRow> dataTableRows = table.getGherkinRows();
     final List<String> ballOne = dataTableRows.get(1).getCells();
@@ -39,9 +43,8 @@ public class BowlingStepDefs {
       final int ballTwoTally = ballTwoTallyStr.equals("-") ? 0 : Integer.parseInt(ballTwoTallyStr);
       frameTallies[i] = new FrameTally(ballOneTally, ballTwoTally);
     }
-
-
   }
+
 
   @When("^the game is played$")
   public void the_game_is_played() throws Throwable {
@@ -52,8 +55,6 @@ public class BowlingStepDefs {
 
   @Then("^the players score is (\\d+)$")
   public void the_players_score_is(int score) throws Throwable {
-    throw new PendingException();
+    assertEquals(score, player.getScore());
   }
-
-
 }
