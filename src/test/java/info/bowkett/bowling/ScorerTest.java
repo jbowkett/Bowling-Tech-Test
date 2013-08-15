@@ -62,6 +62,18 @@ public class ScorerTest {
     assertEquals(28, score);
   }
 
+  @Test
+  public void testStrikeAddsNextTwoBallsToTotalScoreWhenAtTheEndOfTheFrame() throws Exception{
+
+    final int [] ballOneScores = {0,0,0,0,0,0,0,0,10,3};
+    final int [] ballTwoScores = {0,0,0,0,0,0,0,0, 0,6};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores);
+
+    final int score = scorer.getScore(tallyCard);
+    assertEquals(28, score);
+  }
+
 
 
   private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores) {
