@@ -1,5 +1,7 @@
 package info.bowkett.bowling;
 
+import java.util.Iterator;
+
 /**
  * Created by IntelliJ IDEA.
  * User: jbowkett
@@ -9,6 +11,14 @@ package info.bowkett.bowling;
  */
 public class Scorer {
   public int getScore(TallyCard tallyCard) {
-    return -1;
+    int totalScore = 0;
+    final Iterator<FrameTally> frameIterator = tallyCard.iterator();
+    while(frameIterator.hasNext()){
+      final FrameTally tally = frameIterator.next();
+      totalScore += tally.getBallOneScore();
+      totalScore += tally.getBallTwoScore();
+    }
+
+    return totalScore;
   }
 }

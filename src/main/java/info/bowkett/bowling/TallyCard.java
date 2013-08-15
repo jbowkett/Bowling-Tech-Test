@@ -1,6 +1,7 @@
 package info.bowkett.bowling;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,5 +17,9 @@ public class TallyCard {
 
   public void add(FrameTally frameTally) {
     allFrames.add(frameTally);
+  }
+
+  public Iterator<FrameTally> iterator() {
+    return allFrames.iterator();
   }
 }

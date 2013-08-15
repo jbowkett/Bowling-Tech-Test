@@ -16,4 +16,12 @@ public class FrameTally {
     this.ballOneScore = ballOneScore;
     this.ballTwoScore = ballTwoScore;
   }
+
+  public int getBallOneScore() {
+    return ballOneScore;
+  }
+
+  public int getBallTwoScore() {
+    return ballTwoScore;
+  }
 }
