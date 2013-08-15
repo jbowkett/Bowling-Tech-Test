@@ -1,5 +1,7 @@
-package info.bowkett.bowling;
+package info.bowkett.bowling.model;
 
+import info.bowkett.bowling.Scorer;
+import info.bowkett.bowling.TallyCard;
 import info.bowkett.bowling.model.FrameTally;
 
 /**
