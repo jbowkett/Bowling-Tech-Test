@@ -11,10 +11,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Scorer {
+  private static final int MAX_FRAMES = 10;
+  private static final int STRIKE_TALLY = 10;
+
   public int getScore(TallyCard tallyCard) {
     int totalScore = 0;
     final List<FrameTally> frames = tallyCard.getFrames();
-    for(int i = 0; i < frames.size(); i++){
+    for(int i = 0; i < MAX_FRAMES; i++){
       final FrameTally tally = frames.get(i);
       final int frameTotal = tally.getBallOneScore() + tally.getBallTwoScore();
 
@@ -30,19 +33,39 @@ public class Scorer {
   }
 
   private boolean frameIsStrike(FrameTally tally) {
-    return tally.getBallOneScore() == 10;
+    return tally.getBallOneScore() == STRIKE_TALLY;
   }
 
   private boolean frameIsSpare(int frameTotal) {
-    return frameTotal == 10;
+    return frameTotal == STRIKE_TALLY;
   }
 
   private int getStrikeBonus(int index, List<FrameTally> frames) {
     if(thereIsANextFrame(index, frames)){
       final FrameTally nextFrame = nextFrame(index, frames);
-      return nextFrame.getBallOneScore() + nextFrame.getBallTwoScore();
+      final int nextBallOneScore = nextFrame.getBallOneScore();
+      if(frameIsStrike(nextFrame)){
+        if(thereIsANextFrameAfter(index, frames)){
+          return nextBallOneScore + nextFrame(index+1, frames).getBallOneScore();
+        }
+        //next frame after is the last frame
+        else{
+          return nextBallOneScore;
+        }
+      }
+      //next frame not a strike
+      else{
+        return nextBallOneScore + nextFrame.getBallTwoScore();
+      }
     }
-    return 0;
+    //last frame
+    else{
+      return frames.get(index).getBallTwoScore() + frames.get(index).getBonusBallScore();
+    }
+  }
+
+  private boolean thereIsANextFrameAfter(int index, List<FrameTally> frames) {
+    return thereIsANextFrame(index+1, frames);
   }
 
   private int getSpareBonus(int index, List<FrameTally> frames) {

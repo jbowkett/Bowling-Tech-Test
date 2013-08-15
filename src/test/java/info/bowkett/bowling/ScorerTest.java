@@ -79,6 +79,19 @@ public class ScorerTest {
     assertEquals(28, score);
   }
 
+  @Test
+  public void testFullScoreGives300() throws Exception{
+
+    final int [] ballOneScores =   {10,10,10,10,10,10,10,10,10,10};
+    final int [] ballTwoScores =   { 0, 0, 0, 0, 0, 0, 0, 0, 0,10};
+    final int [] bonusBallScores = { 0, 0, 0, 0, 0, 0, 0, 0, 0,10};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
+
+    final int score = scorer.getScore(tallyCard);
+    assertEquals(300, score);
+  }
+
 
 
   private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores, int [] bonusBallScores) {
