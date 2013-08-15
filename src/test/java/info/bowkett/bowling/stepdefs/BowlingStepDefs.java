@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 import gherkin.formatter.model.DataTableRow;
 import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Player;
-import info.bowkett.bowling.Scorer;
+import info.bowkett.bowling.model.Scorer;
 import info.bowkett.bowling.TallyCard;
 
 import java.util.List;
