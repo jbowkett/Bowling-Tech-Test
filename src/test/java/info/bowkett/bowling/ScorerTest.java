@@ -50,6 +50,19 @@ public class ScorerTest {
     assertEquals(20, score);
   }
 
+  @Test
+  public void testStrikeAddsNextTwoBallsToTotalScore() throws Exception{
+
+    final int [] ballOneScores = {10,3,0,0,0,0,0,0,0,0};
+    final int [] ballTwoScores = {0, 6,0,0,0,0,0,0,0,0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores);
+
+    final int score = scorer.getScore(tallyCard);
+    assertEquals(28, score);
+  }
+
+
 
   private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores) {
     final TallyCard tallyCard = mock(TallyCard.class);
