@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gherkin.formatter.model.DataTableRow;
+import info.bowkett.bowling.Frame;
 import info.bowkett.bowling.Player;
 
 import java.util.List;
@@ -24,9 +25,18 @@ public class BowlingStepDefs {
     final Player player = new Player("Player_"+System.currentTimeMillis());
 
     final List<DataTableRow> dataTableRows = table.getGherkinRows();
-    final DataTableRow ballOne = dataTableRows.get(1);
-    final DataTableRow ballTwo = dataTableRows.get(2);
+    final List<String> ballOne = dataTableRows.get(1).getCells();
+    final List<String> ballTwo = dataTableRows.get(2).getCells();
 
+    final Frame [] frames = new Frame[ballOne.size()];
+    for (int i = 1; i< ballOne.size() ; i++) {
+      final String ballOneTallyStr = ballOne.get(i);
+      final String ballTwoTallyStr = ballTwo.get(i);
+
+      final int ballOneTally = ballOneTallyStr.equals("-") ? 0 : Integer.parseInt(ballOneTallyStr);
+      final int ballTwoTally = ballTwoTallyStr.equals("-") ? 0 : Integer.parseInt(ballTwoTallyStr);
+      frames[i] = new Frame(ballOneTally, ballTwoTally);
+    }
 
 
   }
