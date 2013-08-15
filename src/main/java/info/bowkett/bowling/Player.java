@@ -1,6 +1,6 @@
 package info.bowkett.bowling;
 
-import java.util.ArrayList;
+import info.bowkett.bowling.model.FrameTally;
 
 /**
  * Created by IntelliJ IDEA.

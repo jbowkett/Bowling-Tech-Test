@@ -1,5 +1,6 @@
 package info.bowkett.bowling;
 
+import info.bowkett.bowling.model.FrameTally;
 import org.junit.Before;
 import org.junit.Test;
 

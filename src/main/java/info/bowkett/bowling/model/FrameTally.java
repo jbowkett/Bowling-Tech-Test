@@ -1,4 +1,4 @@
-package info.bowkett.bowling;
+package info.bowkett.bowling.model;
 
 /**
  * Created by IntelliJ IDEA.
