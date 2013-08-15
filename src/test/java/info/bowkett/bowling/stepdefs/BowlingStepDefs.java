@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gherkin.formatter.model.DataTableRow;
+import info.bowkett.bowling.Player;
 
 import java.util.List;
 
@@ -20,9 +21,14 @@ public class BowlingStepDefs {
 
   @Given("^a player with the following scores:$")
   public void a_player_with_the_following_scores(DataTable table) throws Throwable {
+    final Player player = new Player("Player_"+System.currentTimeMillis());
+
     final List<DataTableRow> dataTableRows = table.getGherkinRows();
     final DataTableRow ballOne = dataTableRows.get(1);
     final DataTableRow ballTwo = dataTableRows.get(2);
+
+
+
   }
 
   @When("^the game is over$")
@@ -31,7 +37,7 @@ public class BowlingStepDefs {
   }
 
   @Then("^the players score is (\\d+)$")
-  public void the_players_score_is(int arg1) throws Throwable {
+  public void the_players_score_is(int score) throws Throwable {
     throw new PendingException();
   }
 
