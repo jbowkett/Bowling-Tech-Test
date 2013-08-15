@@ -17,26 +17,46 @@ public class Scorer {
     int totalScore = 0;
     final List<FrameTally> frames = tallyCard.getFrames();
     for(int i = 0; i < MAX_FRAMES; i++){
-      final FrameTally tally = frames.get(i);
-      final int frameTotal = tally.getBallOneScore() + tally.getBallTwoScore();
-
-      if(frameIsStrike(tally)){
-        totalScore += getStrikeBonus(i, frames);
-      }
-      else if(frameIsSpare(frameTotal)){
-        totalScore += getSpareBonus(i, frames);
-      }
-      totalScore += frameTotal;
+      int frameScore = getFrameScore(frames, i);
+      totalScore += frameScore;
     }
     return totalScore;
+  }
+
+  public int getFrameScore(TallyCard tallyCard, int index){
+    return getFrameScore(tallyCard.getFrames(), index);
+  }
+
+
+  private int getFrameScore(List<FrameTally> frames, int index) {
+    final FrameTally tally = frames.get(index);
+    int frameScore = 0;
+    frameScore += tally.getBallOneScore() + tally.getBallTwoScore();
+    frameScore += getBonusPoints(frames, index, tally);
+    return frameScore;
+  }
+
+  private int getBonusPoints(List<FrameTally> frames, int i, FrameTally tally) {
+    int bonusPoints = 0;
+    if(frameIsStrike(tally)){
+      bonusPoints += getStrikeBonus(i, frames);
+    }
+    else if(frameIsSpare(tally)){
+      bonusPoints += getSpareBonus(i, frames);
+    }
+    return bonusPoints;
   }
 
   private boolean frameIsStrike(FrameTally tally) {
     return tally.getBallOneScore() == STRIKE_TALLY;
   }
 
-  private boolean frameIsSpare(int frameTotal) {
-    return frameTotal == STRIKE_TALLY;
+  private boolean frameIsSpare(FrameTally frame) {
+    if(!frameIsStrike(frame)){
+      final int frameScore = frame.getBallOneScore() + frame.getBallTwoScore();
+      return frameScore == STRIKE_TALLY;
+    }
+    return false;
   }
 
   private int getStrikeBonus(int index, List<FrameTally> frames) {
