@@ -1,8 +1,5 @@
 package info.bowkett.bowling.model;
 
-import info.bowkett.bowling.TallyCard;
-import info.bowkett.bowling.model.FrameTally;
-
 import java.util.List;
 
 /**

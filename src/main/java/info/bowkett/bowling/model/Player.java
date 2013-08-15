@@ -1,7 +1,5 @@
 package info.bowkett.bowling.model;
 
-import info.bowkett.bowling.TallyCard;
-
 /**
  * Created by IntelliJ IDEA.
  * User: jbowkett

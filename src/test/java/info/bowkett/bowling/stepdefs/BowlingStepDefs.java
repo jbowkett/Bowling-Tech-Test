@@ -8,7 +8,7 @@ import gherkin.formatter.model.DataTableRow;
 import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Player;
 import info.bowkett.bowling.model.Scorer;
-import info.bowkett.bowling.TallyCard;
+import info.bowkett.bowling.model.TallyCard;
 
 import java.util.List;
 
