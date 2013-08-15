@@ -1,7 +1,7 @@
 package info.bowkett.bowling;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class TallyCard {
     allFrames.add(frameTally);
   }
 
-  public Iterator<FrameTally> iterator() {
-    return allFrames.iterator();
+  public List<FrameTally> getFrames() {
+    return Collections.unmodifiableList(allFrames);
   }
 }

@@ -1,6 +1,7 @@
 package info.bowkett.bowling;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,13 +13,27 @@ import java.util.Iterator;
 public class Scorer {
   public int getScore(TallyCard tallyCard) {
     int totalScore = 0;
-    final Iterator<FrameTally> frameIterator = tallyCard.iterator();
-    while(frameIterator.hasNext()){
-      final FrameTally tally = frameIterator.next();
-      totalScore += tally.getBallOneScore();
-      totalScore += tally.getBallTwoScore();
+    final List<FrameTally> frames = tallyCard.getFrames();
+    for(int i = 0; i< frames.size(); i++){
+      final FrameTally tally = frames.get(i);
+      final int frameTotal = tally.getBallOneScore() + tally.getBallTwoScore();
+      if(frameIsSpare(frameTotal)){
+        totalScore += getSpareBonus(i, frames);
+      }
+      totalScore += frameTotal;
     }
 
     return totalScore;
+  }
+
+  private int getSpareBonus(int index, List<FrameTally> frames) {
+    if(index < frames.size()){
+      return frames.get(index+1).getBallOneScore();
+    }
+    return 0;
+  }
+
+  private boolean frameIsSpare(int frameTotal) {
+    return frameTotal == 10;
   }
 }

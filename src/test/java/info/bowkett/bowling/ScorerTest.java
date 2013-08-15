@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +17,6 @@ public class ScorerTest {
   @Test
   public void testZeroTallyYieldsZeroScore() throws Exception{
 
-
     final int [] ballOneScores = {0,0,0,0,0,0,0,0,0,0};
     final int [] ballTwoScores = {0,0,0,0,0,0,0,0,0,0};
 
@@ -27,6 +25,31 @@ public class ScorerTest {
     final int score = scorer.getScore(tallyCard);
     assertEquals(0, score);
   }
+
+  @Test
+  public void testOneScoreTallyYieldsTotalScore() throws Exception{
+
+    final int [] ballOneScores = {5,0,0,0,0,0,0,0,0,0};
+    final int [] ballTwoScores = {1,0,0,0,0,0,0,0,0,0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores);
+
+    final int score = scorer.getScore(tallyCard);
+    assertEquals(6, score);
+  }
+
+  @Test
+  public void testSpareAddsNextBallToTotalScore() throws Exception{
+
+    final int [] ballOneScores = {7,4,0,0,0,0,0,0,0,0};
+    final int [] ballTwoScores = {3,2,0,0,0,0,0,0,0,0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores);
+
+    final int score = scorer.getScore(tallyCard);
+    assertEquals(20, score);
+  }
+
 
   private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores) {
     final TallyCard tallyCard = mock(TallyCard.class);
@@ -37,17 +60,13 @@ public class ScorerTest {
       when(tally.getBallTwoScore()).thenReturn(ballTwoScores[i]);
       tallies.add(tally);
     }
-
-    when(tallyCard.iterator()).thenReturn(tallies.iterator());
+    when(tallyCard.getFrames()).thenReturn(tallies);
     return tallyCard;
   }
 
   @Before
   public void init() throws Exception{
     scorer = new Scorer();
-
   }
-
-
 }
 
