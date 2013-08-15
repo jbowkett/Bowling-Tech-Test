@@ -95,6 +95,45 @@ public class ScorerTest {
     assertEquals(300, score);
   }
 
+  @Test
+  public void testGetFrameScoreAtStartOfScoreCard() throws Exception{
+
+    final int [] ballOneScores =   {10,10,10};
+    final int [] ballTwoScores =   { 0, 0, 0};
+    final int [] bonusBallScores = { 0, 0, 0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
+
+    final int score = scorer.getFrameScore(tallyCard, 0);
+    assertEquals(30, score);
+  }
+
+  @Test
+  public void testGetFrameScoreInMiddleOfScoreCard() throws Exception{
+
+    final int [] ballOneScores =   {10,10,5};
+    final int [] ballTwoScores =   { 0, 0,2};
+    final int [] bonusBallScores = { 0, 0,0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
+
+    final int score = scorer.getFrameScore(tallyCard, 1);
+    assertEquals(17, score);
+  }
+
+  @Test
+  public void testGetFrameScoreAtEndOfScoreCard() throws Exception{
+
+    final int [] ballOneScores =   {10,10,10};
+    final int [] ballTwoScores =   { 0, 0, 0};
+    final int [] bonusBallScores = { 0, 0, 0};
+
+    final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
+
+    final int score = scorer.getFrameScore(tallyCard, 2);
+    assertEquals(10, score);
+  }
+
 
 
   private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores, int [] bonusBallScores) {
