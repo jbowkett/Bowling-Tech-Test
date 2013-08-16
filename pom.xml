@@ -9,7 +9,7 @@
   <packaging>jar</packaging>
 
   <name>Bowling Scorecard</name>
-  <url>http://maven.apache.org</url>
+  <url>http://github.com/jbowkett</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,4 +40,24 @@
       <version>1.9.5</version>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>info.bowkett.bowling.Main</mainClass>
+              <packageName>info.bowkett.bowling</packageName>
+            </manifest>
+            <manifestEntries>
+              <mode>development</mode>
+              <url>${pom.url}</url>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
