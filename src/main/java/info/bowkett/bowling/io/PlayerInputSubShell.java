@@ -21,33 +21,27 @@ public class PlayerInputSubShell implements SubShell {
 
   public Player[] start() throws QuitException {
     final int playerCount = promptForPlayerCount();
-    return getPlayers(playerCount);
+    return promptForPlayers(playerCount);
   }
 
   private int promptForPlayerCount() throws QuitException {
-    int playerCount = 0;
-    do{
-      console.msgln("How many players will there be? ");
-      try {
-        playerCount = console.getIntInput("> ", 1, Integer.MAX_VALUE);
-      }
-      catch (InvalidInputException e) {
-        console.exception(e);
-      }
-    }
-    while(playerCount <= 0);
-    return playerCount;
+    console.msgln("How many players will there be? ");
+    return console.getIntInput("> ", 1, Integer.MAX_VALUE);
   }
 
-  private Player [] getPlayers(int playerCount) throws QuitException {
+  private Player [] promptForPlayers(int playerCount) throws QuitException {
+    console.msgln("Please enter the player names:");
     final Player[] players = new Player[playerCount];
-
-
-    for(int i =0 ; i < playerCount ; i++){
-      final String name = console.getStringPrompt("Name > ");
-      players[i] = new Player(name, new TallyCard(), new Scorer());
+    for(int i = 0 ; i < playerCount ; i++){
+      final int playerNumber = i+1;
+      players[i] = getPlayer(playerNumber);
     }
     return players;
+  }
+
+  private Player getPlayer(int playerNumber) throws QuitException {
+    final String name = console.getStringPrompt("Player ["+playerNumber+"] name > ");
+    return new Player(name, new TallyCard(), new Scorer());
   }
 }
 
