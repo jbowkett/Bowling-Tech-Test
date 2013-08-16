@@ -30,8 +30,8 @@ public class Console {
     return input == null || input.trim().length() == 0;
   }
 
-  public int getIntInput(int minValue, int maxValue) throws QuitException, InvalidInputException {
-    final String input = getStringPrompt("Name > ");
+  public int getIntInput(String prompt, int minValue, int maxValue) throws QuitException, InvalidInputException {
+    final String input = getStringPrompt(prompt);
     try{
       final int parsedValue = Integer.parseInt(input);
       if(withinBounds(minValue, maxValue, parsedValue)){

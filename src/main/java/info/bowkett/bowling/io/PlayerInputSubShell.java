@@ -29,7 +29,7 @@ public class PlayerInputSubShell implements SubShell {
     do{
       console.msgln("How many players will there be? ");
       try {
-        playerCount = console.getIntInput(1, Integer.MAX_VALUE);
+        playerCount = console.getIntInput("> ", 1, Integer.MAX_VALUE);
       }
       catch (InvalidInputException e) {
         console.exception(e);
@@ -44,8 +44,8 @@ public class PlayerInputSubShell implements SubShell {
 
 
     for(int i =0 ; i < playerCount ; i++){
-      console.msg("Name >");
-      players[i] = new Player(console.getStringPrompt(), new TallyCard(), new Scorer());
+      final String name = console.getStringPrompt("Name > ");
+      players[i] = new Player(name, new TallyCard(), new Scorer());
     }
     return players;
   }
