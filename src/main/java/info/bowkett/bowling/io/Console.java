@@ -30,28 +30,34 @@ public class Console {
     return input == null || input.trim().length() == 0;
   }
 
-  public int getIntInput(String prompt, int minValue, int maxValue) throws QuitException, InvalidInputException {
-    final String input = getStringPrompt(prompt);
-    try{
-      final int parsedValue = Integer.parseInt(input);
-      if(withinBounds(minValue, maxValue, parsedValue)){
-        return parsedValue;
+  public int getIntInput(String prompt, int minValue, int maxValue) throws QuitException {
+    while(true){
+      final String input = getStringPrompt(prompt);
+      try{
+        final int parsedValue = toInt(input);
+        if(withinBounds(minValue, maxValue, parsedValue)){
+          return parsedValue;
+        }
+        throw new InvalidInputException("Invalid number input :["+input+"]");
       }
-      return outOfBoundsInputException(input, minValue, maxValue);
+      catch(InvalidInputException e) {
+        exception(e, "Please enter a number between "+minValue+" & "+ maxValue);
+      }
+    }
+  }
+
+  private int toInt(String input) throws InvalidInputException {
+    try{
+      return Integer.parseInt(input);
     }
     catch(NumberFormatException nfe){
-      return outOfBoundsInputException(input, minValue, maxValue);
+      throw new InvalidInputException("Invalid number input :["+input+"]");
     }
   }
 
   private boolean withinBounds(int minValue, int maxValue, int parsedValue) {
     return parsedValue >= minValue && parsedValue < maxValue;
   }
-
-  private int outOfBoundsInputException(String input, int minValue, int maxValue) throws InvalidInputException {
-    throw new InvalidInputException("Invalid number input :["+input+"]", "Please enter a number between "+minValue+" & "+ maxValue);
-  }
-
 
   public void msgln(String msg) {
     System.out.println(msg);
@@ -61,7 +67,7 @@ public class Console {
     System.out.print(msg);
   }
 
-  public void exception(InvalidInputException e) {
-    msgln(e.getMessage() + " :: " +e.getAdvice());
+  public void exception(InvalidInputException e, String advice) {
+    msgln(e.getMessage() + " :: " + advice);
   }
 }
