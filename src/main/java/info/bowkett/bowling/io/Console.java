@@ -14,16 +14,24 @@ public class Console {
     this.console = console;
   }
 
-  public String getStringPrompt() throws QuitException {
-    String input = console.readLine();
-    if(input.equalsIgnoreCase("QUIT")){
-      throw new QuitException();
+  public String getStringPrompt(String prompt) throws QuitException {
+    String input = null;
+    while(isBlank(input)){
+      msg(prompt);
+      input = console.readLine();
+      if(input.equalsIgnoreCase("QUIT")){
+        throw new QuitException();
+      }
     }
     return input;
   }
 
+  private boolean isBlank(String input) {
+    return input == null || input.trim().length() == 0;
+  }
+
   public int getIntInput(int minValue, int maxValue) throws QuitException, InvalidInputException {
-    final String input = getStringPrompt();
+    final String input = getStringPrompt("Name > ");
     try{
       final int parsedValue = Integer.parseInt(input);
       if(withinBounds(minValue, maxValue, parsedValue)){
