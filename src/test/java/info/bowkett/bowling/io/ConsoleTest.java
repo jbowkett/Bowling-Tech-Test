@@ -23,6 +23,6 @@ public class ConsoleTest {
     final java.io.Console wrapped = mock(java.io.Console.class);
     when(wrapped.readLine()).thenReturn("quit");
     final Console console = new Console(wrapped);
-    console.getStringInput();
+    console.getStringPrompt();
   }
 }

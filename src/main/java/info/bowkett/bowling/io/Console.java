@@ -14,7 +14,7 @@ public class Console {
     this.console = console;
   }
 
-  public String getStringInput() throws QuitException {
+  public String getStringPrompt() throws QuitException {
     String input = console.readLine();
     if(input.equalsIgnoreCase("QUIT")){
       throw new QuitException();
@@ -23,7 +23,7 @@ public class Console {
   }
 
   public int getIntInput(int minValue, int maxValue) throws QuitException, InvalidInputException {
-    final String input = getStringInput();
+    final String input = getStringPrompt();
     try{
       final int parsedValue = Integer.parseInt(input);
       if(withinBounds(minValue, maxValue, parsedValue)){

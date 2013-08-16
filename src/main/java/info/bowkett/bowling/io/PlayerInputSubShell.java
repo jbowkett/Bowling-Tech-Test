@@ -41,9 +41,11 @@ public class PlayerInputSubShell implements SubShell {
 
   private Player [] getPlayers(int playerCount) throws QuitException {
     final Player[] players = new Player[playerCount];
+
+
     for(int i =0 ; i < playerCount ; i++){
       console.msg("Name >");
-      players[i] = new Player(console.getStringInput(), new TallyCard(), new Scorer());
+      players[i] = new Player(console.getStringPrompt(), new TallyCard(), new Scorer());
     }
     return players;
   }

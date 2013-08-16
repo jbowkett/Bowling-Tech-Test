@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class Scorer {
   private static final int MAX_FRAMES = 10;
+
+  //strike is a scoring concept
   private static final int STRIKE_TALLY = 10;
 
   public int getScore(TallyCard tallyCard) {
