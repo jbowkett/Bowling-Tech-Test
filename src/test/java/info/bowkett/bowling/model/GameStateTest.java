@@ -150,10 +150,39 @@ public class GameStateTest {
       t.setTally(10);
     }
     final Turn bonus_1 = state.getNextTurn();
+    bonus_1.setTally(10);
     assertEquals(false, GameState.GAME_OVER == bonus_1);
 
     final Turn bonus_2 = state.getNextTurn();
+    bonus_2.setTally(10);
     assertEquals(false, GameState.GAME_OVER == bonus_2);
+  }
+
+  @Test
+  public void testCorrectNumberOfBallsWithPerfectGameWithTwoPlayers(){
+    final GameState state = new GameState();
+    final Player[] players = getPlayers(2);
+    state.setPlayers(players);
+
+    for (int i = 0; i < 10; i++) {
+      final Turn player_1 = state.getNextTurn();
+      player_1.setTally(10);
+      final Turn player_2 = state.getNextTurn();
+      player_2.setTally(10);
+    }
+    final Turn player_1_bonus_1 = state.getNextTurn();
+    player_1_bonus_1.setTally(10);
+    assertEquals(false, GameState.GAME_OVER == player_1_bonus_1);
+    final Turn player_1_bonus_2 = state.getNextTurn();
+    player_1_bonus_2.setTally(10);
+    assertEquals(false, GameState.GAME_OVER == player_1_bonus_2);
+
+    final Turn player_2_bonus_1 = state.getNextTurn();
+    player_2_bonus_1.setTally(10);
+    assertEquals(false, GameState.GAME_OVER == player_2_bonus_1);
+    final Turn player_2_bonus_2 = state.getNextTurn();
+    player_2_bonus_2.setTally(10);
+    assertEquals(false, GameState.GAME_OVER == player_2_bonus_2);
   }
 
   @Test
@@ -173,19 +202,6 @@ public class GameStateTest {
     final Turn bonus_1 = state.getNextTurn();
     assertEquals(false, GameState.GAME_OVER == bonus_1);
   }
-
-  public void testCorrectTurnsWith_Frame_10_ball_2_WithTwoPlayers(){
-
-    final GameState state = new GameState();
-    final Player[] players = getPlayers(1);
-    state.setPlayers(players);
-
-
-  }
-
-
-
-
 
 
   private Player[] getPlayers(int count) {
