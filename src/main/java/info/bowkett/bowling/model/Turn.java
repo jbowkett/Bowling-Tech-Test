@@ -14,13 +14,16 @@ public class Turn {
   private final int ballNumber;
   private final Player player;
   private final int availablePins;
+  private int frameTally;
   private int tally;
+  private static final int MAX_PINS = 10;
 
-  public Turn(int frameNumber, int ballNumber, Player player, int availablePins) {
+  public Turn(int frameNumber, int ballNumber, Player player, int availablePins, int frameTally) {
     this.frameNumber = frameNumber;
     this.ballNumber = ballNumber;
     this.player = player;
     this.availablePins = availablePins;
+    this.frameTally = frameTally;
   }
 
   public int getFrameNumber() {
@@ -41,9 +44,18 @@ public class Turn {
 
   public void setTally(int tally) {
     this.tally = tally;
+    frameTally += tally;
   }
 
   public int getTally(){
     return tally;
+  }
+
+  public Turn samePlayerNextBall() {
+    return new Turn(frameNumber, ballNumber+1, player, MAX_PINS - tally, frameTally);
+  }
+
+  public int frameTally() {
+    return frameTally;
   }
 }

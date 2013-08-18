@@ -156,6 +156,24 @@ public class GameStateTest {
     assertEquals(false, GameState.GAME_OVER == bonus_2);
   }
 
+  @Test
+  public void testCorrectNumberOfBallsWithSpareInLastFrameWithOnePlayer(){
+    final GameState state = new GameState();
+    final Player[] players = getPlayers(1);
+    state.setPlayers(players);
+    //play 9 frames
+    for (int i = 0; i < 9; i++) {
+      final Turn t = state.getNextTurn();
+      t.setTally(10);
+    }
+    Turn ball_1 = state.getNextTurn();
+    ball_1.setTally(3);
+    Turn ball_2 = state.getNextTurn();
+    ball_2.setTally(7);
+    final Turn bonus_1 = state.getNextTurn();
+    assertEquals(false, GameState.GAME_OVER == bonus_1);
+  }
+
   public void testCorrectTurnsWith_Frame_10_ball_2_WithTwoPlayers(){
 
     final GameState state = new GameState();
@@ -165,13 +183,6 @@ public class GameStateTest {
 
   }
 
-  public void testCorrectTurnsWith_Frame_10_ball_3_WithTwoPlayersAndBothScoringStrikes(){
-
-  }
-
-  public void testCorrectTurnsWith_Frame_10_ball_3_WithTwoPlayersAndOnlyOneScoringAStrike(){
-
-  }
 
 
 
