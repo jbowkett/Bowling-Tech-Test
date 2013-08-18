@@ -25,4 +25,7 @@ public class ConsoleTest {
     final Console console = new Console(wrapped);
     console.getStringPrompt("Input >  ");
   }
+//todo:  if I could stub java.io.console, then should test :
+//       typing the empty string causes a re-prompt
+//       boundary checking works
 }
