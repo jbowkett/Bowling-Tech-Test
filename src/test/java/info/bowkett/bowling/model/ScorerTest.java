@@ -15,7 +15,6 @@ import static org.mockito.Mockito.*;
 
 
 public class ScorerTest {
-  private Scorer scorer;
 
   @Test
   public void testZeroTallyYieldsZeroScore() throws Exception{
@@ -26,7 +25,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(0, score);
   }
 
@@ -39,7 +38,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(6, score);
   }
 
@@ -52,7 +51,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(20, score);
   }
 
@@ -65,7 +64,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(28, score);
   }
 
@@ -78,7 +77,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(28, score);
   }
 
@@ -91,7 +90,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getScore(tallyCard);
+    final int score = new Scorer().getScore(tallyCard);
     assertEquals(300, score);
   }
 
@@ -104,7 +103,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getFrameScore(tallyCard, 0);
+    final int score = new Scorer().getFrameScore(tallyCard, 0);
     assertEquals(30, score);
   }
 
@@ -117,7 +116,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getFrameScore(tallyCard, 1);
+    final int score = new Scorer().getFrameScore(tallyCard, 1);
     assertEquals(17, score);
   }
 
@@ -130,7 +129,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = scorer.getFrameScore(tallyCard, 2);
+    final int score = new Scorer().getFrameScore(tallyCard, 2);
     assertEquals(10, score);
   }
 
@@ -148,11 +147,6 @@ public class ScorerTest {
     }
     when(tallyCard.getFrames()).thenReturn(tallies);
     return tallyCard;
-  }
-
-  @Before
-  public void init() throws Exception{
-    scorer = new Scorer();
   }
 }
 
