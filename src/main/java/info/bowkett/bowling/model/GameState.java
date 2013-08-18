@@ -9,9 +9,9 @@ package info.bowkett.bowling.model;
  */
 public class GameState {
   private Player[] players;
-  
-  public static final Turn GAME_OVER = new Turn(-1, -1, null, 0);
-  public static final Turn AWAITING_FIRST_TURN = new Turn(0, 0, null, 0);
+
+  public static final Turn GAME_OVER = new Turn(-1, -1, null, 0, 0);
+  public static final Turn AWAITING_FIRST_TURN = new Turn(0, 0, null, 0, 0);
 
   private Turn currentTurn = AWAITING_FIRST_TURN;
   private int currentPlayerIndex = 0;
@@ -23,20 +23,40 @@ public class GameState {
   }
 
   public Turn getNextTurn() {
-    if(currentTurn == AWAITING_FIRST_TURN){
+    if (currentTurn == AWAITING_FIRST_TURN) {
       currentTurn = firstTurn();
     }
-    else if(currentPlayerFinished()){
+    else if (currentPlayerFinished()) {
       currentTurn = nextPlayer();
     }
-    else{
+    else {
       currentTurn = samePlayerNextBall();
     }
     return currentTurn;
   }
 
+  //if the current ball number is less than 2, not finished, if it is 2, and the tally is 10 or 20 then also not finished
+
+  //in last frame, always get 2 throws, you get three if throw 2 was  a strike, or throw 2 made a spare
   private boolean currentPlayerFinished() {
+    if (finalFrame()) {
+      if (currentTurn.getBallNumber() == 1) {
+        return false;
+      }
+      else if (currentTurn.getBallNumber() == 2) {
+        if(wasStrike() || currentTurn.frameTally() == 10){
+          return false;
+        }
+      }
+      else if (currentTurn.getBallNumber() == 3) {
+        return true;
+      }
+    }
     return wasPlayersLastBallInFrame() || wasStrike();
+  }
+
+  private boolean finalFrame() {
+    return currentTurn.getFrameNumber() == MAX_FRAMES;
   }
 
   private boolean wasPlayersLastBallInFrame() {
@@ -48,27 +68,27 @@ public class GameState {
   }
 
   private Turn firstTurn() {
-    return new Turn(1, 1, players[currentPlayerIndex], 10);
+    return new Turn(1, 1, players[currentPlayerIndex], 10, 0);
   }
 
-  private Turn samePlayerNextBall(){
+  private Turn samePlayerNextBall() {
     return currentTurn.samePlayerNextBall();
   }
 
-  private Turn nextPlayer(){
+  private Turn nextPlayer() {
     final int currentFrame = currentTurn.getFrameNumber();
-    if(frameComplete()){
+    if (frameComplete()) {
       return goToNextFrame(currentFrame);
     }
-    else{
-      return new Turn(currentFrame, 1, players[++currentPlayerIndex], 10);
+    else {
+      return new Turn(currentFrame, 1, players[++currentPlayerIndex], 10, 0);
     }
   }
 
   private Turn goToNextFrame(int currentFrame) {
     goToFirstPlayer();
-    if(thereIsANextFrame(currentFrame)){
-      return new Turn(currentFrame + 1, 1, players[currentPlayerIndex], 10);
+    if (thereIsANextFrame(currentFrame)) {
+      return new Turn(currentFrame + 1, 1, players[currentPlayerIndex], 10, 0);
     }
     return GAME_OVER;
   }
@@ -82,6 +102,6 @@ public class GameState {
   }
 
   private boolean frameComplete() {
-    return currentPlayerIndex+1 == players.length;
+    return currentPlayerIndex + 1 == players.length;
   }
 }
