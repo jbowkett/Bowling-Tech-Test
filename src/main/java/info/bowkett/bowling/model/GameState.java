@@ -35,24 +35,15 @@ public class GameState {
     return currentTurn;
   }
 
-  //if the current ball number is less than 2, not finished, if it is 2, and the tally is 10 or 20 then also not finished
-
-  //in last frame, always get 2 throws, you get three if throw 2 was  a strike, or throw 2 made a spare
   private boolean currentPlayerFinished() {
-    if (finalFrame()) {
-      if (currentTurn.getBallNumber() == 1) {
-        return false;
-      }
-      else if (currentTurn.getBallNumber() == 2) {
-        if(wasStrike() || currentTurn.frameTally() == 10){
-          return false;
-        }
-      }
-      else if (currentTurn.getBallNumber() == 3) {
-        return true;
-      }
+    if(finalFrame()){
+      return currentTurn.getBallNumber() == 3 || currentTurn.getBallNumber() == 2 && neitherStrikeNorSpareInFrame();
     }
     return wasPlayersLastBallInFrame() || wasStrike();
+  }
+
+  private boolean neitherStrikeNorSpareInFrame() {
+    return !wasStrike() && currentTurn.frameTally() < 10;
   }
 
   private boolean finalFrame() {
