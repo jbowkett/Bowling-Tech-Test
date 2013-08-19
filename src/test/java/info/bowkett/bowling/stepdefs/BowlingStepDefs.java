@@ -63,8 +63,10 @@ public class BowlingStepDefs {
 
   @When("^the game is played$")
   public void the_game_is_played() throws Throwable {
-    for (FrameTally frameTally : frameTallies) {
-      player.addFrameTally(frameTally);
+    for (int i = 0; i < 10; i++) {
+      final int frameNumber = i + 1;
+      final FrameTally frameTally = frameTallies[i];
+      player.addFrameTally(frameNumber, frameTally);
     }
   }
 

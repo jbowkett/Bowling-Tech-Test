@@ -3,6 +3,7 @@ package info.bowkett.bowling.model;
 import info.bowkett.bowling.model.FrameTally;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,13 +16,15 @@ import java.util.List;
  */
 public class TallyCard {
 
-  private final List<FrameTally> allFrames = new ArrayList<FrameTally>();
+  private static final int MAX_FRAMES = 10;
+  private final FrameTally[] allFrames = new FrameTally[MAX_FRAMES];
 
-  public void add(FrameTally frameTally) {
-    allFrames.add(frameTally);
+  public void add(int frameNumber, FrameTally frameTally) {
+    final int index = frameNumber -1;
+    allFrames[index] = frameTally;
   }
 
   public List<FrameTally> getFrames() {
-    return Collections.unmodifiableList(allFrames);
+    return Collections.unmodifiableList(Arrays.asList(allFrames));
   }
 }

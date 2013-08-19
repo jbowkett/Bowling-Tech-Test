@@ -22,9 +22,8 @@ public class Player {
     return name;
   }
 
-  public void addFrameTally(FrameTally frameTally) {
-    tallyCard.add(frameTally);
-    
+  public void addFrameTally(int frameNumber, FrameTally frameTally) {
+    tallyCard.add(frameNumber, frameTally);
   }
 
   public int getScore() {
