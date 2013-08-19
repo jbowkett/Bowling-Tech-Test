@@ -38,6 +38,15 @@ public class PlayerScorePrinterTest {
   }
 
   @Test
+  public void testPrintTallySeparator(){
+    final StringBuilder consoleOutput = new StringBuilder();
+    final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
+    final Player mockPlayer = mockPlayerAndScore();
+    printer.printScoreCardFor(mockPlayer);
+    assertEquals("--------------------------------------------------------", extractLine(consoleOutput, 4));
+  }
+
+  @Test
   public void testPrintBall_2_Score(){
     final StringBuilder consoleOutput = new StringBuilder();
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));

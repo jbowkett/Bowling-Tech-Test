@@ -13,6 +13,7 @@ import info.bowkett.bowling.model.TallyCard;
  */
 public class PlayerScorePrinter {
   private Console console;
+  private static final int SCORE_TABLE_WIDTH = 51;
 
   public PlayerScorePrinter(Console console) {
     this.console = console;
@@ -26,6 +27,14 @@ public class PlayerScorePrinter {
     printBall(player, 2);
     console.msg("\n");
     printBall(player, 3);
+    console.msg("\n");
+    printSeparator(player);
+  }
+
+  private void printSeparator(Player player) {
+    final String name = player.getName();
+    final int width = name.length() + SCORE_TABLE_WIDTH;
+    console.msg(leftPad("-", width, '-'));
   }
 
   private void printBall(Player player, int ball) {
