@@ -2,6 +2,8 @@ package info.bowkett.bowling.io;
 
 import info.bowkett.bowling.model.Player;
 
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,19 +13,43 @@ import info.bowkett.bowling.model.Player;
  * To change this template use File | Settings | File Templates.
  */
 public class GameSummarySubShell implements SubShell {
-  private final ScorePrinter scorePrinter;
+  private final PlayerScorePrinter playerScorePrinter;
+  private TeamScorePrinter teamScorePrinter;
   private final Console console;
   private Player[] players;
 
-  public GameSummarySubShell(ScorePrinter scorePrinter, Console console) {
-    this.scorePrinter = scorePrinter;
+  public GameSummarySubShell(PlayerScorePrinter playerScorePrinter, TeamScorePrinter teamScorePrinter, Console console) {
+    this.playerScorePrinter = playerScorePrinter;
+    this.teamScorePrinter = teamScorePrinter;
     this.console = console;
   }
 
   public void start() {
     final Player winner = getWinner();
     console.msgln("The winner was: ["+winner.getName()+"] with ["+winner.getTotalScore()+"] points!");
-    
+    sortPlayersByScore();
+    printAllPlayersScores();
+    console.msgln("Had you been playing as a team, the scores would have been:");
+    printAllPLayersAsTeamScore();
+  }
+
+  private void printAllPLayersAsTeamScore() {
+    teamScorePrinter.printScoreCardFor(players);
+  }
+
+  private void printAllPlayersScores() {
+    for (Player player : players) {
+      playerScorePrinter.printScoreCardFor(player);
+      console.msgln("");
+    }
+  }
+
+  private void sortPlayersByScore() {
+    Arrays.sort(players, new Comparator<Player>(){
+      public int compare(Player o1, Player o2) {
+        return o1.getTotalScore() - o2.getTotalScore();
+      }
+    });
   }
 
   private Player getWinner() {
