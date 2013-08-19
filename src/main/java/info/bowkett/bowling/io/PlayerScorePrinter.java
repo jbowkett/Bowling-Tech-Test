@@ -34,9 +34,26 @@ public class PlayerScorePrinter {
     for (int i = 1; i <= 10 ; i++) {
       final FrameTally frameTally = tallyCard.getFrameTallyForFrame(i);
       final int tally = frameTally.getBallTally(ball);
-      printCell(tally);
+      printTally(tally);
     }
     console.msg(" |");
+  }
+
+  private void printTally(int tally) {
+    if(wasStrike(tally)){
+      printStrike();
+    }
+    else{
+      printCell(tally);
+    }
+  }
+
+  private boolean wasStrike(int tally) {
+    return tally == 10;
+  }
+
+  private void printStrike() {
+    console.msg(" | ").msg("X");
   }
 
   private void printSpaceForName(String name) {
