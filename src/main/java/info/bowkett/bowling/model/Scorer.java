@@ -33,7 +33,7 @@ public class Scorer {
   private int getFrameScore(List<FrameTally> frames, int index) {
     final FrameTally tally = frames.get(index);
     int frameScore = 0;
-    frameScore += tally.getBallOneScore() + tally.getBallTwoScore();
+    frameScore += tally.getBallOneTally() + tally.getBallTwoTally();
     frameScore += getBonusPoints(frames, index, tally);
     return frameScore;
   }
@@ -50,12 +50,12 @@ public class Scorer {
   }
 
   private boolean frameIsStrike(FrameTally tally) {
-    return tally.getBallOneScore() == STRIKE_TALLY;
+    return tally.getBallOneTally() == STRIKE_TALLY;
   }
 
   private boolean frameIsSpare(FrameTally frame) {
     if(!frameIsStrike(frame)){
-      final int frameScore = frame.getBallOneScore() + frame.getBallTwoScore();
+      final int frameScore = frame.getBallOneTally() + frame.getBallTwoTally();
       return frameScore == STRIKE_TALLY;
     }
     return false;
@@ -64,10 +64,10 @@ public class Scorer {
   private int getStrikeBonus(int index, List<FrameTally> frames) {
     if(thereIsANextFrame(index, frames)){
       final FrameTally nextFrame = nextFrame(index, frames);
-      final int nextBallOneScore = nextFrame.getBallOneScore();
+      final int nextBallOneScore = nextFrame.getBallOneTally();
       if(frameIsStrike(nextFrame)){
         if(thereIsANextFrameAfter(index, frames)){
-          return nextBallOneScore + nextFrame(index+1, frames).getBallOneScore();
+          return nextBallOneScore + nextFrame(index+1, frames).getBallOneTally();
         }
         //next frame after is the last frame
         else{
@@ -76,12 +76,12 @@ public class Scorer {
       }
       //next frame not a strike
       else{
-        return nextBallOneScore + nextFrame.getBallTwoScore();
+        return nextBallOneScore + nextFrame.getBallTwoTally();
       }
     }
     //last frame
     else{
-      return frames.get(index).getBallTwoScore() + frames.get(index).getBonusBallScore();
+      return frames.get(index).getBallTwoTally() + frames.get(index).getBonusBallTally();
     }
   }
 
@@ -91,7 +91,7 @@ public class Scorer {
 
   private int getSpareBonus(int index, List<FrameTally> frames) {
     if(thereIsANextFrame(index, frames)){
-      return nextFrame(index, frames).getBallOneScore();
+      return nextFrame(index, frames).getBallOneTally();
     }
     return 0;
   }

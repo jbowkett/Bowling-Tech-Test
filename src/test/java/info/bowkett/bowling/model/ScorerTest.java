@@ -1,9 +1,5 @@
 package info.bowkett.bowling.model;
 
-import info.bowkett.bowling.model.FrameTally;
-import info.bowkett.bowling.model.Scorer;
-import info.bowkett.bowling.model.TallyCard;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -140,9 +136,9 @@ public class ScorerTest {
     final List<FrameTally> tallies = new ArrayList<FrameTally>();
     for (int i = 0 ; i< ballOneScores.length ; i++) {
       final FrameTally tally = mock(FrameTally.class);
-      when(tally.getBallOneScore()).thenReturn(ballOneScores[i]);
-      when(tally.getBallTwoScore()).thenReturn(ballTwoScores[i]);
-      when(tally.getBonusBallScore()).thenReturn(bonusBallScores[i]);
+      when(tally.getBallOneTally()).thenReturn(ballOneScores[i]);
+      when(tally.getBallTwoTally()).thenReturn(ballTwoScores[i]);
+      when(tally.getBonusBallTally()).thenReturn(bonusBallScores[i]);
       tallies.add(tally);
     }
     when(tallyCard.getFrames()).thenReturn(tallies);

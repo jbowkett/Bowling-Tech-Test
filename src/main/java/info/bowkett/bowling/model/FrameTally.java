@@ -10,14 +10,14 @@ package info.bowkett.bowling.model;
  *
  */
 public class FrameTally {
-  private final int ballOneScore;
-  private final int ballTwoScore;
-  private final int bonusBallScore;
+  private final int ballOneTally;
+  private final int ballTwoTally;
+  private final int bonusBallTally;
 
-  public FrameTally(int ballOneScore, int ballTwoScore, int bonusBallScore) {
-    this.ballOneScore = ballOneScore;
-    this.ballTwoScore = ballTwoScore;
-    this.bonusBallScore = bonusBallScore;
+  public FrameTally(int ballOneTally, int ballTwoTally, int bonusBallTally) {
+    this.ballOneTally = ballOneTally;
+    this.ballTwoTally = ballTwoTally;
+    this.bonusBallTally = bonusBallTally;
   }
   
   public static FrameTally ordinaryFrame(int ballOneScore, int ballTwoScore){
@@ -28,15 +28,15 @@ public class FrameTally {
     return new FrameTally(ballOneScore, ballTwoScore, bonusBallScore);
   }
 
-  public int getBallOneScore() {
-    return ballOneScore;
+  public int getBallOneTally() {
+    return ballOneTally;
   }
 
-  public int getBallTwoScore() {
-    return ballTwoScore;
+  public int getBallTwoTally() {
+    return ballTwoTally;
   }
 
-  public int getBonusBallScore() {
-    return bonusBallScore;
+  public int getBonusBallTally() {
+    return bonusBallTally;
   }
 }
