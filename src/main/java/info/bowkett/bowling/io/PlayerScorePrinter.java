@@ -76,7 +76,7 @@ public class PlayerScorePrinter {
   }
 
   private void printStrike() {
-    console.msg(" | ").msg("X");
+    console.msg(" |  ").msg("X");
   }
 
   private void printSpaceForName(String name) {

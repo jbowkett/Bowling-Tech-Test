@@ -38,7 +38,7 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mockPlayerAndScore();
     printer.printScoreCardFor(mockPlayer);
-    assertEquals("      |  2 |  4 |  1 |  0 |  1 |  9 |  2 |  3 |  7 | X |", extractLine(consoleOutput, 1));
+    assertEquals("      |  2 |  4 |  1 |  0 |  1 |  9 |  2 |  3 |  7 |  X |", extractLine(consoleOutput, 1));
   }
 
   @Test
@@ -47,7 +47,7 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mockPlayerAndScore();
     printer.printScoreCardFor(mockPlayer);
-    assertEquals("      |  1 |  1 |  5 |  2 |  4 |  0 |  3 |  1 |  1 | X |", extractLine(consoleOutput, 2));
+    assertEquals("      |  1 |  1 |  5 |  2 |  4 |  0 |  3 |  1 |  1 |  X |", extractLine(consoleOutput, 2));
   }
 
   @Test
@@ -56,7 +56,7 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mockPlayerAndScore();
     printer.printScoreCardFor(mockPlayer);
-    assertEquals("      |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 | X |", extractLine(consoleOutput, 3));
+    assertEquals("      |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  X |", extractLine(consoleOutput, 3));
   }
 
   @Test
