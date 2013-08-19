@@ -72,6 +72,6 @@ public class BowlingStepDefs {
 
   @Then("^the player's score is (\\d+)$")
   public void the_player_s_score_is(int score) throws Throwable {
-    assertEquals(score, player.getScore());
+    assertEquals(score, player.getTotalScore());
   }
 }

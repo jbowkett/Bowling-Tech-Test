@@ -22,13 +22,14 @@ public class GameSummarySubShell implements SubShell {
 
   public void start() {
     final Player winner = getWinner();
-    console.msgln("The winner was: ["+winner.getName()+"] with ["+winner.getScore()+"] points!");
+    console.msgln("The winner was: ["+winner.getName()+"] with ["+winner.getTotalScore()+"] points!");
+    
   }
 
   private Player getWinner() {
     Player highestScorer = players[0];
     for (Player player : players) {
-      if(player.getScore() > highestScorer.getScore()){
+      if(player.getTotalScore() > highestScorer.getTotalScore()){
         highestScorer = player;
       }
     }

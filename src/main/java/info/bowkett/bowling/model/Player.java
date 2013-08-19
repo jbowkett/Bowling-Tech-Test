@@ -26,7 +26,7 @@ public class Player {
     tallyCard.add(frameNumber, frameTally);
   }
 
-  public int getScore() {
+  public int getTotalScore() {
     return scorer.getScore(tallyCard);
   }
 }
