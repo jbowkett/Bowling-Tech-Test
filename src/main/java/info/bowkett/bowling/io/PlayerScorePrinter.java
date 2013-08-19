@@ -2,6 +2,7 @@ package info.bowkett.bowling.io;
 
 import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Player;
+import info.bowkett.bowling.model.Scorer;
 import info.bowkett.bowling.model.TallyCard;
 
 /**
@@ -29,6 +30,19 @@ public class PlayerScorePrinter {
     printBall(player, 3);
     console.msg("\n");
     printSeparator(player);
+    console.msg("\n");
+    printFrameScores(player);
+  }
+
+  private void printFrameScores(Player player) {
+    printSpaceForName(player.getName());
+    final Scorer scorer = player.getScorer();
+    final TallyCard tallyCard = player.getTallyCard();
+    for (int i = 1; i <= 10 ; i++) {
+      final int score = scorer.getFrameScore(tallyCard, i);
+      printCell(score);
+    }
+    console.msg(" |");
   }
 
   private void printSeparator(Player player) {
