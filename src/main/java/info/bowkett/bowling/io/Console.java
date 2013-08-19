@@ -56,7 +56,7 @@ public class Console {
   }
 
   private boolean withinBounds(int minValue, int maxValue, int parsedValue) {
-    return parsedValue >= minValue && parsedValue < maxValue;
+    return parsedValue >= minValue && parsedValue <= maxValue;
   }
 
   public void msgln(String msg) {
