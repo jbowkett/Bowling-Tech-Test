@@ -26,7 +26,7 @@ public class GameSummarySubShell {
 
   public void start() {
     final Player winner = getWinner();
-    console.msgln("The winner was: ["+winner.getName()+"] with ["+winner.getTotalScore()+"] points!");
+    console.msgln("\nThe winner was: ["+winner.getName()+"] with ["+winner.getTotalScore()+"] points!\n");
     sortPlayersByScore();
     printAllPlayersScores();
     console.msgln("Had you been playing as a team, the scores would have been:");
@@ -40,7 +40,8 @@ public class GameSummarySubShell {
   private void printAllPlayersScores() {
     for (Player player : players) {
       playerScorePrinter.printScoreCardFor(player);
-      console.msgln("");
+      console.msgln("").msgln("");
+      console.msgln("Total Score :["+player.getTotalScore()+"]\n");
     }
   }
 
