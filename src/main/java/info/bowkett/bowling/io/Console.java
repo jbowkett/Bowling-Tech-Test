@@ -59,12 +59,15 @@ public class Console {
     return parsedValue >= minValue && parsedValue <= maxValue;
   }
 
-  public void msgln(String msg) {
+  public Console msgln(String msg) {
     System.out.println(msg);
+    return this;
   }
 
-  public void msg(String msg) {
+
+  public Console msg(String msg) {
     System.out.print(msg);
+    return this;
   }
 
   public void exception(InvalidInputException e, String advice) {
