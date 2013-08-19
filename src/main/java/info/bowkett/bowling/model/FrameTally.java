@@ -28,16 +28,8 @@ public class FrameTally {
     return new FrameTally(ballOneScore, ballTwoScore, bonusBallScore);
   }
 
-  public int getBallOneTally() {
-    return ballOneTally;
-  }
-
-  public int getBallTwoTally() {
-    return ballTwoTally;
-  }
-
-  public int getBonusBallTally() {
-    return bonusBallTally;
+  public static FrameTally emptyFrame(){
+    return new FrameTally(0, 0, 0);
   }
 
   public int getBallTally(int ball) {
