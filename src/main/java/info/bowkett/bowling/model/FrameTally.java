@@ -6,7 +6,7 @@ package info.bowkett.bowling.model;
  * Date: Aug 15, 2013
  * Time: 8:31:35 PM
  *
- * Represents the amount of pins knocked down in a frame
+ * Immutable class represents the amount of pins knocked down in a frame
  *
  */
 public class FrameTally {
