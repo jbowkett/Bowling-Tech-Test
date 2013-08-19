@@ -16,11 +16,12 @@ public class Main {
 
   public void scoreCard(){
     final GameState constraints = new GameState();
-    final ScorePrinter scorePrinter = new ScorePrinter();
     final Console console = new Console(System.console());
+    final PlayerScorePrinter playerScorePrinter = new PlayerScorePrinter(console);
+    final TeamScorePrinter teamScorePrinter = new TeamScorePrinter(console);
     final PlayerInputSubShell playerInputSubShell = new PlayerInputSubShell(console);
     final GameRecordingSubShell gameRecordingSubShell = new GameRecordingSubShell(constraints, console);
-    final GameSummarySubShell gameSummarySubShell = new GameSummarySubShell(scorePrinter, console);
+    final GameSummarySubShell gameSummarySubShell = new GameSummarySubShell(playerScorePrinter, teamScorePrinter, console);
     final GameConsole gameConsole = new GameConsole(playerInputSubShell, gameRecordingSubShell, gameSummarySubShell, console);
     gameConsole.start();
   }
