@@ -13,7 +13,7 @@ public class Turn {
   private final int frameNumber;
   private final int ballNumber;
   private final Player player;
-  private final int availablePins;
+  private int availablePins;
   private int frameTally;
   private int tally;
   private static final int MAX_PINS = 10;
@@ -39,7 +39,24 @@ public class Turn {
   }
 
   public int getAvailablePins() {
+    if(finalFrame()){
+      if(wasStrikeOnFirstBall() || wasSpareOnFirstTwoBalls()){
+        availablePins = 10;
+      }
+    }
     return availablePins;
+  }
+
+  private boolean wasSpareOnFirstTwoBalls() {
+    return ballNumber == 3 && frameTally == 20;
+  }
+
+  private boolean wasStrikeOnFirstBall() {
+    return ballNumber == 2 && frameTally == 10;
+  }
+
+  private boolean finalFrame() {
+    return frameNumber == 10;
   }
 
   public void setTally(int tally) {
