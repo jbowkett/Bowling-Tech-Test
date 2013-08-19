@@ -1,6 +1,8 @@
 package info.bowkett.bowling.io;
 
+import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Player;
+import info.bowkett.bowling.model.TallyCard;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -22,9 +24,36 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mock(Player.class);
     when(mockPlayer.getName()).thenReturn("James");
+    final TallyCard mockTallyCard = mockTallyCard(new int[]{2,4,1,0,1,9,2,3,7,7});
+    when(mockPlayer.getTallyCard()).thenReturn(mockTallyCard);
     printer.printScoreCardFor(mockPlayer);
     assertEquals("James |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 |", extractLine(consoleOutput, 0));
   }
+
+
+  @Test
+  public void testPrintBall_1_Score(){
+    final StringBuilder consoleOutput = new StringBuilder();
+    final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
+    final Player mockPlayer = mock(Player.class);
+    when(mockPlayer.getName()).thenReturn("James");
+    final TallyCard mockTallyCard = mockTallyCard(new int[]{2,4,1,0,1,9,2,3,7,7});
+    when(mockPlayer.getTallyCard()).thenReturn(mockTallyCard);
+    printer.printScoreCardFor(mockPlayer);
+    assertEquals("      |  2 |  4 |  1 |  0 |  1 |  9 |  2 |  3 |  7 |  7 |", extractLine(consoleOutput, 1));
+  }
+
+  private TallyCard mockTallyCard(int[] ballOneScores) {
+    final TallyCard mockTallyCard = mock(TallyCard.class);
+    for (int i = 0; i < ballOneScores.length; i++) {
+      final int ballOneScore = ballOneScores[i];
+      final FrameTally mockTally = mock(FrameTally.class);
+      when(mockTally.getBallOneTally()).thenReturn(ballOneScore);
+      when(mockTallyCard.getFrameTallyForFrame(i+1)).thenReturn(mockTally);
+    }
+    return mockTallyCard;
+  }
+
 
   private String extractLine(StringBuilder consoleOutput, int lineNumber) {
     return consoleOutput.toString().split("\n")[lineNumber];

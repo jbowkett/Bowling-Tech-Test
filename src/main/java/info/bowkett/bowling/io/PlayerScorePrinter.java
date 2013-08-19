@@ -1,6 +1,8 @@
 package info.bowkett.bowling.io;
 
+import info.bowkett.bowling.model.FrameTally;
 import info.bowkett.bowling.model.Player;
+import info.bowkett.bowling.model.TallyCard;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,6 +21,24 @@ public class PlayerScorePrinter {
   public void printScoreCardFor(Player player) {
     printHeader(player.getName());
     console.msg("\n");
+    printBallOne(player);
+    console.msg("\n");
+//    printBallTwo(player);
+  }
+
+  private void printBallOne(Player player) {
+    printSpaceForName(player.getName());
+    final TallyCard tallyCard = player.getTallyCard();
+    for (int i = 1; i <= 10 ; i++) {
+      final FrameTally frameTally = tallyCard.getFrameTallyForFrame(i);
+      final int tally = frameTally.getBallOneTally();
+      printCell(tally);
+    }
+    console.msg(" |");
+  }
+
+  private void printSpaceForName(String name) {
+    console.msg(leftPad(" ", name.length(), ' '));
   }
 
   private void printHeader(String name) {
@@ -28,9 +48,13 @@ public class PlayerScorePrinter {
 
   private void printFrameNumbers() {
     for (int i = 1; i <= 10 ; i++) {
-      console.msg(" | ").msg(padInt(i));
+      printCell(i);
     }
     console.msg(" |");
+  }
+
+  private void printCell(int i) {
+    console.msg(" | ").msg(padInt(i));
   }
 
   private String padInt(int i) {
