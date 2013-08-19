@@ -15,7 +15,7 @@ import info.bowkett.bowling.model.Player;
  * record for by the GameState.
  *
  */
-public class GameRecordingSubShell implements SubShell {
+public class GameRecordingSubShell {
   private final GameState gameState;
   private final Console console;
 

@@ -12,7 +12,7 @@ import java.util.Comparator;
  * Time: 12:04:10 AM
  * To change this template use File | Settings | File Templates.
  */
-public class GameSummarySubShell implements SubShell {
+public class GameSummarySubShell {
   private final PlayerScorePrinter playerScorePrinter;
   private TeamScorePrinter teamScorePrinter;
   private final Console console;

@@ -12,7 +12,7 @@ import info.bowkett.bowling.model.TallyCard;
  * Time: 12:01:07 AM
  * To change this template use File | Settings | File Templates.
  */
-public class PlayerInputSubShell implements SubShell {
+public class PlayerInputSubShell {
   private final Console console;
 
   public PlayerInputSubShell(Console console) {
