@@ -28,6 +28,7 @@ public class GameConsole {
       final Player[] players = playerInputSubShell.start();
       gameRecordingSubShell.setPlayers(players);
       gameRecordingSubShell.start();
+      gameSummarySubShell.setPlayers(players);
       gameSummarySubShell.start();
     }
     catch (QuitException e) {
