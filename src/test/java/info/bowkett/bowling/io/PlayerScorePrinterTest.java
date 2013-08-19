@@ -61,8 +61,8 @@ public class PlayerScorePrinterTest {
       final int ballOneScore = ballOneScores[i];
       final int ballTwoScore = ballTwoScores[i];
       final FrameTally mockTally = mock(FrameTally.class);
-      when(mockTally.getBallOneTally()).thenReturn(ballOneScore);
-      when(mockTally.getBallTwoTally()).thenReturn(ballTwoScore);
+      when(mockTally.getBallTally(1)).thenReturn(ballOneScore);
+      when(mockTally.getBallTally(2)).thenReturn(ballTwoScore);
       when(mockTallyCard.getFrameTallyForFrame(i+1)).thenReturn(mockTally);
     }
     return mockTallyCard;

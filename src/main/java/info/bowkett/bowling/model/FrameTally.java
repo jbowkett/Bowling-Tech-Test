@@ -39,4 +39,13 @@ public class FrameTally {
   public int getBonusBallTally() {
     return bonusBallTally;
   }
+
+  public int getBallTally(int ball) {
+    switch(ball){
+      case 1 : return ballOneTally;
+      case 2 : return ballTwoTally;
+      case 3 : return bonusBallTally;
+      default : throw new IllegalArgumentException("Invalid ball# :["+ball+"]");
+    }
+  }
 }

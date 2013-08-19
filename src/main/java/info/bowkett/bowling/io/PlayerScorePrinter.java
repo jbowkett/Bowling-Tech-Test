@@ -21,17 +21,17 @@ public class PlayerScorePrinter {
   public void printScoreCardFor(Player player) {
     printHeader(player.getName());
     console.msg("\n");
-    printBallOne(player);
+    printBall(player, 1);
     console.msg("\n");
-//    printBallTwo(player);
+    printBall(player, 2);
   }
 
-  private void printBallOne(Player player) {
+  private void printBall(Player player, int ball) {
     printSpaceForName(player.getName());
     final TallyCard tallyCard = player.getTallyCard();
     for (int i = 1; i <= 10 ; i++) {
       final FrameTally frameTally = tallyCard.getFrameTallyForFrame(i);
-      final int tally = frameTally.getBallOneTally();
+      final int tally = frameTally.getBallTally(ball);
       printCell(tally);
     }
     console.msg(" |");
