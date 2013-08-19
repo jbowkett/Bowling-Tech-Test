@@ -36,6 +36,7 @@ public class GameConsole {
 
   private void printIntro() {
     console.msgln("\n\n\nWelcome to the Bowling Scorecard!");
-    console.msgln("================================");
+    console.msgln("=================================");
+    console.msgln("You may exit at any time by typing \"quit\".");
   }
 }
