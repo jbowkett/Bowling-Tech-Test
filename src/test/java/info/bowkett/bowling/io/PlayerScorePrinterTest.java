@@ -34,7 +34,7 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mockPlayerAndScore();
     printer.printScoreCardFor(mockPlayer);
-    assertEquals("      |  2 |  4 |  1 |  0 |  1 |  9 |  2 |  3 |  7 |  7 |", extractLine(consoleOutput, 1));
+    assertEquals("      |  2 |  4 |  1 |  0 |  1 |  9 |  2 |  3 |  7 | 10 |", extractLine(consoleOutput, 1));
   }
 
   @Test
@@ -43,26 +43,40 @@ public class PlayerScorePrinterTest {
     final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
     final Player mockPlayer = mockPlayerAndScore();
     printer.printScoreCardFor(mockPlayer);
-    assertEquals("      |  1 |  1 |  5 |  2 |  4 |  0 |  3 |  1 |  1 |  1 |", extractLine(consoleOutput, 2));
+    assertEquals("      |  1 |  1 |  5 |  2 |  4 |  0 |  3 |  1 |  1 | 10 |", extractLine(consoleOutput, 2));
+  }
+
+  @Test
+  public void testPrintBall_3_Score(){
+    final StringBuilder consoleOutput = new StringBuilder();
+    final PlayerScorePrinter printer = new PlayerScorePrinter(mockConsole(consoleOutput));
+    final Player mockPlayer = mockPlayerAndScore();
+    printer.printScoreCardFor(mockPlayer);
+    assertEquals("      |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 | 10 |", extractLine(consoleOutput, 3));
   }
 
   private Player mockPlayerAndScore() {
     final Player mockPlayer = mock(Player.class);
     when(mockPlayer.getName()).thenReturn("James");
-    final TallyCard mockTallyCard = mockTallyCard(new int[]{2,4,1,0,1,9,2,3,7,7},
-      new int[]{1,1,5,2,4,0,3,1,1,1});
+    final TallyCard mockTallyCard = mockTallyCard(new int[]{2,4,1,0,1,9,2,3,7,10},
+      new int[]{1,1,5,2,4,0,3,1,1,10},
+      new int[]{0,0,0,0,0,0,0,0,0,10}
+      );
     when(mockPlayer.getTallyCard()).thenReturn(mockTallyCard);
     return mockPlayer;
   }
 
-  private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores) {
+
+  private TallyCard mockTallyCard(int[] ballOneScores, int [] ballTwoScores, int [] ballThreeScores) {
     final TallyCard mockTallyCard = mock(TallyCard.class);
     for (int i = 0; i < ballOneScores.length; i++) {
       final int ballOneScore = ballOneScores[i];
       final int ballTwoScore = ballTwoScores[i];
+      final int ballThreeScore = ballThreeScores[i];
       final FrameTally mockTally = mock(FrameTally.class);
       when(mockTally.getBallTally(1)).thenReturn(ballOneScore);
       when(mockTally.getBallTally(2)).thenReturn(ballTwoScore);
+      when(mockTally.getBallTally(3)).thenReturn(ballThreeScore);
       when(mockTallyCard.getFrameTallyForFrame(i+1)).thenReturn(mockTally);
     }
     return mockTallyCard;

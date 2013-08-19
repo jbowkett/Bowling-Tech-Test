@@ -24,6 +24,8 @@ public class PlayerScorePrinter {
     printBall(player, 1);
     console.msg("\n");
     printBall(player, 2);
+    console.msg("\n");
+    printBall(player, 3);
   }
 
   private void printBall(Player player, int ball) {
