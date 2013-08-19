@@ -31,6 +31,7 @@ public class GameSummarySubShell {
     printAllPlayersScores();
     console.msgln("Had you been playing as a team, the scores would have been:");
     printAllPLayersAsTeamScore();
+    console.msgln("");
   }
 
   private void printAllPLayersAsTeamScore() {
