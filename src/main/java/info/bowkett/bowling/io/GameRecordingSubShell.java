@@ -40,7 +40,7 @@ public class GameRecordingSubShell {
         console.msgln(nextPlayerMsg(player, frameNo));
       }
       console.msgln("Ball #["+ballNo+"]");
-      final int tally = console.getIntInput("> ", 1, availablePins);
+      final int tally = console.getIntInput("> ", 0, availablePins);
       gameState.setTally(tally);
     }
   }
