@@ -99,7 +99,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getFrameScore(tallyCard, 0);
+    final int score = new Scorer().getFrameScore(tallyCard, 1);
     assertEquals(30, score);
   }
 
@@ -112,7 +112,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getFrameScore(tallyCard, 1);
+    final int score = new Scorer().getFrameScore(tallyCard, 2);
     assertEquals(17, score);
   }
 
@@ -125,7 +125,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getFrameScore(tallyCard, 2);
+    final int score = new Scorer().getFrameScore(tallyCard, 3);
     assertEquals(10, score);
   }
 
@@ -136,9 +136,9 @@ public class ScorerTest {
     final List<FrameTally> tallies = new ArrayList<FrameTally>();
     for (int i = 0 ; i< ballOneScores.length ; i++) {
       final FrameTally tally = mock(FrameTally.class);
-      when(tally.getBallOneTally()).thenReturn(ballOneScores[i]);
-      when(tally.getBallTwoTally()).thenReturn(ballTwoScores[i]);
-      when(tally.getBonusBallTally()).thenReturn(bonusBallScores[i]);
+      when(tally.getBallTally(1)).thenReturn(ballOneScores[i]);
+      when(tally.getBallTally(2)).thenReturn(ballTwoScores[i]);
+      when(tally.getBallTally(3)).thenReturn(bonusBallScores[i]);
       tallies.add(tally);
     }
     when(tallyCard.getFrames()).thenReturn(tallies);
