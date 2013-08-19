@@ -56,7 +56,11 @@ public class Console {
   }
 
   private boolean withinBounds(int minValue, int maxValue, int parsedValue) {
-    return parsedValue >= minValue && parsedValue <= maxValue;
+    return isEqualToOneValidValue(minValue, maxValue, parsedValue) || parsedValue >= minValue && parsedValue <= maxValue;
+  }
+
+  private boolean isEqualToOneValidValue(int minValue, int maxValue, int parsedValue) {
+    return minValue == maxValue && maxValue == parsedValue;
   }
 
   public Console msgln(String msg) {
