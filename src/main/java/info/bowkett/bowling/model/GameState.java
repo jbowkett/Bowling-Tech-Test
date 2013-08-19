@@ -15,8 +15,10 @@ public class GameState {
 
   private Turn currentTurn = AWAITING_FIRST_TURN;
   private int currentPlayerIndex = 0;
+  private CurrentPlayersFrameTally currentPlayersFrameTally = new CurrentPlayersFrameTally();
 
   private static int MAX_FRAMES = 10;
+  private static int STRIKE = 10;
 
   public void setPlayers(Player[] players) {
     this.players = players;
@@ -27,6 +29,8 @@ public class GameState {
       currentTurn = firstTurn();
     }
     else if (currentPlayerFinished()) {
+      recordTally();
+      resetTallyForNextPlayer();
       currentTurn = nextPlayer();
     }
     else {
@@ -35,6 +39,15 @@ public class GameState {
     return currentTurn;
   }
 
+  private void recordTally() {
+    final FrameTally tally = currentPlayersFrameTally.toFrameTally();
+    currentTurn.getPlayer().addFrameTally(currentTurn.getFrameNumber(), tally);
+  }
+
+  private void resetTallyForNextPlayer() {
+    currentPlayersFrameTally = new CurrentPlayersFrameTally();
+  }
+  
   private boolean currentPlayerFinished() {
     if(finalFrame()){
       return currentTurn.getBallNumber() == 3 || currentTurn.getBallNumber() == 2 && neitherStrikeNorSpareInFrame();
@@ -55,7 +68,7 @@ public class GameState {
   }
 
   private boolean wasStrike() {
-    return currentTurn.getTally() == 10;
+    return currentTurn.getTally() == STRIKE;
   }
 
   private Turn firstTurn() {
@@ -94,5 +107,27 @@ public class GameState {
 
   private boolean frameComplete() {
     return currentPlayerIndex + 1 == players.length;
+  }
+
+  public void setTally(int tally) {
+    currentTurn.setTally(tally);
+    currentPlayersFrameTally.record(currentTurn.getBallNumber(), tally);
+  }
+
+  /**
+   * Helper class to keep track of the current player's score in this frame
+   */
+  private static class CurrentPlayersFrameTally{
+    private int ballOne, ballTwo, ballThree;
+    private void record(int ball, int tally){
+      switch(ball){
+        case 1 : ballOne = tally; break;
+        case 2 : ballTwo = tally; break;
+        case 3 : ballThree = tally; break;
+      }
+    }
+    private FrameTally toFrameTally(){
+      return new FrameTally(ballOne, ballTwo, ballThree);
+    }
   }
 }

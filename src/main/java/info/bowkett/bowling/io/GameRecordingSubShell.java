@@ -41,7 +41,7 @@ public class GameRecordingSubShell implements SubShell {
       }
       console.msgln("Ball #["+ballNo+"]");
       final int tally = console.getIntInput("> ", 1, availablePins);
-      turn.setTally(tally);
+      gameState.setTally(tally);
     }
   }
 
