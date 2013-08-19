@@ -19,6 +19,16 @@ public class TallyCard {
   private static final int MAX_FRAMES = 10;
   private final FrameTally[] allFrames = new FrameTally[MAX_FRAMES];
 
+  public TallyCard(){
+    fillWithEmptyFrames();
+  }
+
+  private void fillWithEmptyFrames() {
+    for (int i = 0; i < allFrames.length; i++) {
+      allFrames[i] = FrameTally.emptyFrame();
+    }
+  }
+
   public void add(int frameNumber, FrameTally frameTally) {
     allFrames[frameToIndex(frameNumber)] = frameTally;
   }
