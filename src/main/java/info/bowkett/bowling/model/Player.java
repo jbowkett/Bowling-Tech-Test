@@ -33,4 +33,8 @@ public class Player {
   public TallyCard getTallyCard(){
     return tallyCard;
   }
+
+  public Scorer getScorer() {
+    return scorer;
+  }
 }
