@@ -29,4 +29,8 @@ public class Player {
   public int getTotalScore() {
     return scorer.getScore(tallyCard);
   }
+
+  public TallyCard getTallyCard(){
+    return tallyCard;
+  }
 }

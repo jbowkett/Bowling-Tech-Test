@@ -20,11 +20,19 @@ public class TallyCard {
   private final FrameTally[] allFrames = new FrameTally[MAX_FRAMES];
 
   public void add(int frameNumber, FrameTally frameTally) {
-    final int index = frameNumber -1;
-    allFrames[index] = frameTally;
+    allFrames[frameToIndex(frameNumber)] = frameTally;
   }
 
   public List<FrameTally> getFrames() {
     return Collections.unmodifiableList(Arrays.asList(allFrames));
+  }
+
+  public FrameTally getFrameTallyForFrame(int frameNumber) {
+    return allFrames[frameToIndex(frameNumber)];
+
+  }
+
+  private int frameToIndex(int frameNumber) {
+    return frameNumber - 1;
   }
 }
