@@ -19,7 +19,7 @@ public class Scorer {
   //strike is a scoring concept
   private static final int STRIKE_TALLY = 10;
 
-  public int getScore(TallyCard tallyCard) {
+  public int getTotalScore(TallyCard tallyCard) {
     int totalScore = 0;
     for(int i = 1; i <= MAX_FRAMES; i++){
       int frameScore = getFrameScore(tallyCard, i);

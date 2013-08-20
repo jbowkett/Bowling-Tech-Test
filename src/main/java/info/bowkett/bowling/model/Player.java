@@ -29,7 +29,7 @@ public class Player {
   }
 
   public int getTotalScore() {
-    return scorer.getScore(tallyCard);
+    return scorer.getTotalScore(tallyCard);
   }
 
   public TallyCard getTallyCard(){
