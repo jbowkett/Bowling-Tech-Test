@@ -21,7 +21,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(0, score);
   }
 
@@ -34,7 +34,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(6, score);
   }
 
@@ -47,7 +47,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(20, score);
   }
 
@@ -60,7 +60,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(28, score);
   }
 
@@ -73,7 +73,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(28, score);
   }
 
@@ -86,7 +86,7 @@ public class ScorerTest {
 
     final TallyCard tallyCard = mockTallyCard(ballOneScores, ballTwoScores, bonusBallScores);
 
-    final int score = new Scorer().getScore(tallyCard);
+    final int score = new Scorer().getTotalScore(tallyCard);
     assertEquals(300, score);
   }
 
