@@ -14,7 +14,7 @@ import info.bowkett.bowling.model.TallyCard;
  * Prints a player's score sheet for all frames.
  *
  * todo: Could factor out common printing and padding functions into a
- * separate class
+ * todo: separate class
  *
  */
 public class PlayerScorePrinter {
