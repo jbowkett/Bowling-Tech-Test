@@ -5,7 +5,9 @@ package info.bowkett.bowling.io;
  * User: jbowkett
  * Date: Aug 16, 2013
  * Time: 9:06:19 AM
- * To change this template use File | Settings | File Templates.
+ * Represents console input and output, and is responsible for checking the
+ * types and boundaries of input, and whether quit was entered.
+ * Methods continue to prompt until given valid input or "quit".
  */
 public class Console {
   private final java.io.Console console;

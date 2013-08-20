@@ -10,7 +10,10 @@ import java.util.Comparator;
  * User: jbowkett
  * Date: Aug 16, 2013
  * Time: 12:04:10 AM
- * To change this template use File | Settings | File Templates.
+ *
+ * Prints the summary of who won, along with all the players' score sheets and
+ * the projection if they were playing as a team
+ *
  */
 public class GameSummarySubShell {
   private final PlayerScorePrinter playerScorePrinter;

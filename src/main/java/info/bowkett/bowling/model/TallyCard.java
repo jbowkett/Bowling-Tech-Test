@@ -12,7 +12,9 @@ import java.util.List;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 8:50:09 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * A Player's pin tally for all frames in a game
+ *
  */
 public class TallyCard {
 

@@ -5,7 +5,9 @@ package info.bowkett.bowling.model;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 8:23:45 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Immutable class to represent a player
+ *
  */
 public class Player {
   private final String name;

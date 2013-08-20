@@ -7,7 +7,7 @@ import info.bowkett.bowling.model.Player;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 11:57:35 PM
- * To change this template use File | Settings | File Templates.
+ * main Game input console, calls subshells for relevant parts of the game.
  */
 public class GameConsole {
   private final PlayerInputSubShell playerInputSubShell;
@@ -15,7 +15,10 @@ public class GameConsole {
   private final GameSummarySubShell gameSummarySubShell;
   private final Console console;
 
-  public GameConsole(PlayerInputSubShell playerInputSubShell, GameRecordingSubShell gameRecordingSubShell, GameSummarySubShell gameSummarySubShell, Console console) {
+  public GameConsole(PlayerInputSubShell playerInputSubShell,
+                     GameRecordingSubShell gameRecordingSubShell,
+                     GameSummarySubShell gameSummarySubShell,
+                     Console console) {
     this.playerInputSubShell = playerInputSubShell;
     this.gameRecordingSubShell = gameRecordingSubShell;
     this.gameSummarySubShell = gameSummarySubShell;

@@ -7,7 +7,11 @@ import java.util.List;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 8:56:50 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Immutable class (it has no state) to calculate a score from a player's pin
+ * tally, either for a particular frame, (with look ahead to further frames
+ * when there are strikes or spares)
+ *
  */
 public class Scorer {
   private static final int MAX_FRAMES = 10;

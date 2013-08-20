@@ -5,7 +5,10 @@ package info.bowkett.bowling.model;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 11:57:19 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Keeps track of the game's state, takes care of who is next given the
+ * constraints of the bowling game
+ *
  */
 public class GameState {
   private Player[] players;

@@ -10,7 +10,12 @@ import info.bowkett.bowling.model.TallyCard;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 11:58:50 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Prints a player's score sheet for all frames.
+ *
+ * todo: Could factor out common printing and padding functions into a
+ * separate class
+ *
  */
 public class PlayerScorePrinter {
   private Console console;
@@ -103,12 +108,8 @@ public class PlayerScorePrinter {
     return leftPad(""+i, 2, ' ');
   }
 
-
   private String leftPad(String value, int width, char padChar){
     return pad(value, width, padChar) + value;
-  }
-  private String rightPad(String value, int width, char padChar){
-    return value + pad(value, width, padChar);
   }
 
   private String pad(String value, int width, char toPadWith) {

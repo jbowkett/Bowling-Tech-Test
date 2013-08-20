@@ -7,7 +7,14 @@ import info.bowkett.bowling.model.Player;
  * User: jbowkett
  * Date: Aug 15, 2013
  * Time: 11:58:50 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * Prints group of players' scores as if they were playing as a team.
+ *
+ * todo : this should be tallied as the play progresses.
+ * todo: Currently it is effectively being calculated in the final view
+ * todo: this is bad design and should be factored out to be calculated
+ * todo: at the end of each frame
+ *
  */
 public class TeamScorePrinter {
   private Console console;

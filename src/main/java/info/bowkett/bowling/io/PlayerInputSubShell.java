@@ -10,7 +10,9 @@ import info.bowkett.bowling.model.TallyCard;
  * User: jbowkett
  * Date: Aug 16, 2013
  * Time: 12:01:07 AM
- * To change this template use File | Settings | File Templates.
+ *
+ * Sub shell for getting player input
+ *
  */
 public class PlayerInputSubShell {
   private final Console console;
